@@ -1,0 +1,4 @@
+interface:
+  display_name: "SRS Validator"
+  short_description: "Validate and repair generated SRS artifacts"
+  default_prompt: "Use $sr-validate to check the generated SRS and repair compliance errors."

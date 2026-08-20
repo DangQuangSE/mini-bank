@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Tester"
+  short_description: "Create unit, integration, and end-to-end tests"
+  default_prompt: "Use $team-test to build the complete test artifact set for this project."

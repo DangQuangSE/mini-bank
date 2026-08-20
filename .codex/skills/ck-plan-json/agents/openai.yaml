@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan JSON"
+  short_description: "Create phased JSON plan bundles with a compact master and per-phase files"
+  default_prompt: "Use ck:plan-json to create a validated compact master plus detailed phase files with design, quality, and testing state."

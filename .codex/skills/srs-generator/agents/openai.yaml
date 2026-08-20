@@ -1,0 +1,4 @@
+interface:
+  display_name: "Raw Requirements to SRS"
+  short_description: "Convert raw client requirements into an SRS"
+  default_prompt: "Use $srs-generator to turn these raw client requirements into an IEEE 830 SRS."

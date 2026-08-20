@@ -1,0 +1,80 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .codex/hooks/session_start_context.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/session_start_context.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .codex/hooks/pre_srs.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/pre_srs.py",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .codex/hooks/level_gate.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/level_gate.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python .codex/hooks/pre_write_validator.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/pre_write_validator.py",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "python .codex/hooks/plan_validator.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/plan_validator.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python .codex/hooks/quality_receipt_gate.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/quality_receipt_gate.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .codex/hooks/post_srs.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/post_srs.py",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "python .codex/hooks/flag_aggregator.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/flag_aggregator.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

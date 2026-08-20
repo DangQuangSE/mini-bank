@@ -1,0 +1,66 @@
+{
+  "_comment": "Example ck:quality report. One report is written per --gate/--verify call, or per --audit call with --save. Not a JSON-Schema document — an annotated canonical instance, matching this pack's plan-schema.json convention.",
+
+  "mode": "gate",
+  "_mode_values": ["gate", "audit", "diff", "changed", "verify"],
+
+  "target": "phase-02-receipt-gate",
+  "_target": "phase file stem (no extension) for gate/verify, e.g. phase-02-receipt-gate for phase-02-receipt-gate.md; path, diff ref, or 'working-tree' for audit/diff/changed. The receipt this report yields, if any, is derived from this exact string.",
+
+  "verdict": "CHANGES_REQUIRED",
+  "_verdict_values": ["APPROVED", "CHANGES_REQUIRED"],
+  "_verdict_rule": "APPROVED requires zero open findings with severity BLOCKER or HIGH, and zero open MEDIUM findings where introduced_by_current_change is true. audit mode still computes a verdict but it is informational only — it never blocks anything by itself.",
+
+  "reviewed_at": "2026-07-10T10:30:00Z",
+  "reviewed_files": [
+    "src/orders/create-order.ts"
+  ],
+  "_reviewed_files": "Exact file list the reviewer actually read and evaluated. This is what a later receipt (added by the completion-gate phase) hashes against.",
+
+  "summary": {
+    "blocker": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 0,
+    "noted": 1
+  },
+
+  "findings": [
+    {
+      "id": "QUAL-007",
+      "severity": "HIGH",
+      "_severity_values": ["BLOCKER", "HIGH", "MEDIUM", "LOW", "NOTED"],
+      "rule": "DOM_SINGLE_SOURCE",
+      "_rule": "Stable rule ID from core-contract.md or adapters.md — never a paraphrase.",
+      "status": "OPEN",
+      "_status_values": ["OPEN", "RESOLVED", "ACCEPTED_DEBT"],
+      "introduced_by_current_change": true,
+      "_introduced_by_current_change": "true = new in this diff/phase; false = pre-existing debt the reviewer is only noting, not blocking on (unless BLOCKER/HIGH).",
+      "applicable": true,
+      "confidence": "high",
+      "_confidence_values": ["high", "medium", "low"],
+      "location": "src/orders/create-order.ts:48",
+      "evidence": "The eligibility rule duplicates OrderPolicy.isEligible",
+      "why_it_matters": "Two implementations of the same business rule will drift and produce inconsistent eligibility decisions.",
+      "required_action": "Reuse the existing domain policy instead of reimplementing it here.",
+      "owner": "cook"
+    },
+    {
+      "id": "QUAL-011",
+      "severity": "NOTED",
+      "rule": "RDB_SINGLE_LEVEL_FUNCTION",
+      "status": "OPEN",
+      "introduced_by_current_change": false,
+      "applicable": true,
+      "confidence": "medium",
+      "location": "src/orders/legacy-pricing.ts:120",
+      "evidence": "Pre-existing 140-line function mixing pricing calculation and logging.",
+      "why_it_matters": "Pre-existing debt; not something this phase introduced or is scoped to fix.",
+      "required_action": "Out of scope for this phase — track separately if it becomes a blocker for future work.",
+      "owner": "none"
+    }
+  ],
+
+  "report_path": "plans/{slug}/quality/{target}-quality-report.json",
+  "_report_path": "Set only when the report is actually written to disk (--gate always; --audit/--diff/--changed only with --save <path>)."
+}

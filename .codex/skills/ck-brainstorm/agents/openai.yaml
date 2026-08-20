@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm & Explore"
+  short_description: "Explore and debate solutions before writing code"
+  default_prompt: "Use /ck:brainstorm to surface ideas, debate options, and produce a spec before planning"

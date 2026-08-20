@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full SRS Workflow"
+  short_description: "Run the complete gated SRS lifecycle"
+  default_prompt: "Use $srs-workflow to take this project idea through the complete gated SRS lifecycle."

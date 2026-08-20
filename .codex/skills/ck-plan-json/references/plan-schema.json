@@ -1,0 +1,27 @@
+{
+  "plan_id": "feature-name",
+  "goal": "High-level description of what this plan delivers",
+  "status": "pending",
+  "current_phase": 1,
+  "global_context": {
+    "framework": ".NET 8 | Next.js | Python FastAPI",
+    "architecture": "Clean Architecture | Monolith MVC | DDD",
+    "target_folder": "src/Feature/",
+    "constraints": [
+      "No external paid APIs",
+      "Must support offline mode"
+    ]
+  },
+  "phases": [
+    {
+      "phase_id": 1,
+      "name": "setup-project",
+      "description": "Initialize project structure and dependencies",
+      "file": "phase-01-setup-project.json",
+      "status": "pending",
+      "depends_on": [],
+      "quality_status": "not_evaluated",
+      "testing_status": "not_started"
+    }
+  ]
+}

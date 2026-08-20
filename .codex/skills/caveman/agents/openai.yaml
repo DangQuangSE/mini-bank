@@ -1,0 +1,4 @@
+interface:
+  display_name: "Caveman Mode"
+  short_description: "Terse output - strips filler, ~75% token reduction"
+  default_prompt: "Use $caveman to enable terse output mode that strips unnecessary words while preserving all technical content"

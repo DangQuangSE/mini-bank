@@ -1,0 +1,4 @@
+interface:
+  display_name: "SRS Brainstorm"
+  short_description: "Explore actors, scope, rules, and constraints"
+  default_prompt: "Use $sr-brainstorm to deeply explore this project idea before writing requirements."

@@ -1,0 +1,40 @@
+{
+  "_comment": "Example ck:test report. One report is written per invocation (except --tdd --prepare, which writes tdd-ready-schema.json instead). Not a JSON-Schema document — an annotated canonical instance, matching this pack's plan-schema.json / ck-quality report-schema.json convention.",
+
+  "phase": "phase-02-receipt-gate",
+  "_phase": "Phase file stem (no extension). For --all-phases, one report per phase, or an aggregate — see mode.",
+
+  "mode": "verify",
+  "_mode_values": ["default", "unit", "integration", "e2e", "all", "verify", "all-phases", "tdd-verify"],
+
+  "verdict": "FAILED",
+  "_verdict_values": ["PASSED", "FAILED", "BLOCKED"],
+  "_verdict_rule": "BLOCKED means the phase's quality gate was not APPROVED and no test was written or run. FAILED means tests ran and at least one failed, or a tdd-verify run detected a weakened/deleted/modified prepared test.",
+
+  "reviewed_at": "2026-07-11T02:00:00Z",
+
+  "summary": {
+    "passed": 12,
+    "failed": 2,
+    "skipped": 0
+  },
+
+  "failures": [
+    {
+      "id": "TEST-004",
+      "severity": "HIGH",
+      "_severity_values": ["HIGH", "MEDIUM", "LOW"],
+      "type": "BEHAVIOR",
+      "_type_values": ["BEHAVIOR", "REGRESSION", "WEAKENED_TEST"],
+      "_type_weakened_test": "Only for tdd-verify: a prepared test's assertions were loosened, deleted, or narrowed without a corresponding acceptance-criteria change.",
+      "expected": "Duplicate request returns the existing result",
+      "actual": "A duplicate record was created",
+      "likely_owner": "production_code",
+      "_likely_owner_values": ["production_code", "test_code"],
+      "related_files": ["src/orders/create-order.ts"]
+    }
+  ],
+
+  "report_path": "plans/{slug}/tests/{phase}-test-report.json",
+  "_report_path": "Set once the report is written to disk; ck:test always writes one, unlike ck:quality's audit modes."
+}

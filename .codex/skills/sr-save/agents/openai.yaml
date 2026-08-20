@@ -1,0 +1,4 @@
+interface:
+  display_name: "SRS Context Saver"
+  short_description: "Save compact project context for later sessions"
+  default_prompt: "Use $sr-save to preserve the completed SRS project context for future sessions."

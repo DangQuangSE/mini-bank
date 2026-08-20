@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mermaid.js v11"
+  short_description: "Create diagrams and visualizations using Mermaid.js v11 syntax for flowcharts, sequences, ER diagrams, and more"
+  default_prompt: "Use mermaidjs-v11 to generate text-based diagrams including flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, and other visualization types"

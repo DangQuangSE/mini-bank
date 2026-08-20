@@ -1,0 +1,4 @@
+interface:
+  display_name: "Strategic Compact"
+  short_description: "Suggests manual context compaction at logical intervals to preserve context through task phases"
+  default_prompt: "Use strategic-compact to identify optimal points for context compaction during long-running sessions and multi-phase tasks"

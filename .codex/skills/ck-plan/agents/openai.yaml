@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Implementation"
+  short_description: "Plan a feature or system before implementation"
+  default_prompt: "Use ck:plan to create phased artifacts with engineering constraints and separate ck:quality/ck:test handoffs."

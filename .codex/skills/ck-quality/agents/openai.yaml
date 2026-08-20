@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quality Gate"
+  short_description: "Audit architecture and maintainability independently"
+  default_prompt: "Use ck:quality to audit this target or gate the current phase. Return evidence-based findings and never edit production code."

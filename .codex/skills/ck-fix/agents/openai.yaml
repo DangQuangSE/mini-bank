@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fix & Debug"
+  short_description: "Fix a bug using Scout → Diagnose → Fix → Review → Finalize"
+  default_prompt: "Use ck:fix to diagnose the root cause or consume a quality/test report, then re-verify quality after production changes."

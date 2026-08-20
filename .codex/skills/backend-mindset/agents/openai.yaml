@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backend Mindset"
+  short_description: "Build robust backend systems with APIs, authentication, databases, performance optimization, security, and scalability patterns"
+  default_prompt: "Use backend-mindset to design APIs, implement authentication, optimize queries, handle security vulnerabilities, build microservices, or develop production-ready backend systems"

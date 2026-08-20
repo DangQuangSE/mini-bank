@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Apply code review practices with technical rigor, evidence-based claims, and verification over performative responses"
+  default_prompt: "Use code-review after current quality and testing artifacts exist; do not duplicate ck:quality maintainability analysis."

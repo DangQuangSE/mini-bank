@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test & Verify"
+  short_description: "Write and run tests independently from Cook"
+  default_prompt: "Use ck:test to verify the requested scope or run TDD prepare/verify. Never edit production code."

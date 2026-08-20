@@ -1,0 +1,4 @@
+interface:
+  display_name: "Virtual Team Projects"
+  short_description: "Show pipeline progress across all projects"
+  default_prompt: "Use $team-list to show the current Virtual Team pipeline status for every project."

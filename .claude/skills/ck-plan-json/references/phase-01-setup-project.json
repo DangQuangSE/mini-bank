@@ -1,0 +1,48 @@
+{
+  "plan_id": "feature-name",
+  "phase_id": 1,
+  "name": "setup-project",
+  "goal": "Initialize project structure and dependencies",
+  "status": "pending",
+  "current_step": 1,
+  "design_constraints": [
+    "Fast mode may reduce ceremony but never skips the quality gate"
+  ],
+  "quality_profile": {
+    "repository_conventions": {
+      "constants": "",
+      "errors": "",
+      "dependency_injection": ""
+    },
+    "boundaries": {
+      "domain_cannot_import": []
+    },
+    "applicable_rules": [],
+    "allowed_exceptions": []
+  },
+  "quality": {
+    "status": "not_evaluated",
+    "report": "",
+    "receipt": "",
+    "remediation_cycles": 0
+  },
+  "testing": {
+    "status": "not_started",
+    "report": ""
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "description": "Create the project structure and dependency manifest",
+      "status": "pending",
+      "input_files": [],
+      "output_files": ["src/Feature/README.md"],
+      "ai_generated_code": "",
+      "debug_logs": [],
+      "success_criteria": [
+        "Project compiles without errors",
+        "All dependencies are installed"
+      ]
+    }
+  ]
+}

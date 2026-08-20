@@ -1,0 +1,19 @@
+{
+  "_comment": "Example ck:test --tdd --prepare artifact. Written before ck:cook implements anything; ck:cook's preflight (Step 1) checks for status RED_READY here before starting a --tdd phase. Not a JSON-Schema document — an annotated canonical instance.",
+
+  "phase": "phase-02-receipt-gate",
+  "status": "RED_READY",
+  "_status_values": ["RED_READY", "BLOCKED"],
+  "_status_blocked": "A candidate test failed for a reason other than missing implementation (e.g. a syntax error in the test itself) — ck:cook must not proceed until this is resolved.",
+
+  "prepared_at": "2026-07-11T02:00:00Z",
+
+  "test_files": [
+    "src/orders/create-order.test.ts"
+  ],
+  "_test_files": "Every test file written or modified during --prepare. --tdd --verify diffs these exact files' current contents against this snapshot to detect weakening.",
+
+  "expected_red_reason": "OrderService.create does not exist yet",
+
+  "artifact_path": "plans/{slug}/tests/{phase}-tdd-ready.json"
+}

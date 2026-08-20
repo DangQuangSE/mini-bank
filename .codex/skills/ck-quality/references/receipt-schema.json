@@ -1,0 +1,33 @@
+{
+  "_comment": "Example ck:quality receipt. Issued only by scripts/receipt.py issue, only for a report whose verdict is APPROVED with zero open blocking findings. Verified by scripts/receipt.py verify and by hooks/quality_receipt_gate.py. Not a JSON-Schema document — an annotated canonical instance, matching this pack's plan-schema.json convention.",
+
+  "target": "phase-02-receipt-gate",
+  "_target": "The phase file stem this receipt clears for completion — e.g. the stem of phase-02-receipt-gate.md or phase-02-receipt-gate.json. Matches report.target from the report it was issued from.",
+
+  "verdict": "APPROVED",
+  "_verdict": "Always APPROVED. A CHANGES_REQUIRED report never produces a receipt.",
+
+  "policy_version": "1.0.0",
+  "_policy_version": "Must equal scripts/receipt.py POLICY_VERSION at verify time. A version mismatch invalidates the receipt even if the fingerprint still matches — it forces re-verification under the current contract after a policy change.",
+
+  "report_path": "plans/development-quality-pipeline/quality/phase-02-receipt-gate-quality-report.json",
+  "_report_path": "Repo-relative path to the exact report this receipt was derived from.",
+
+  "reviewed_files": [
+    "development-skills/skills/ck-quality/scripts/receipt.py"
+  ],
+  "_reviewed_files": "Copied verbatim from report.reviewed_files, sorted. Every entry must resolve inside the repository.",
+
+  "source_fingerprint": "sha256:...",
+  "_source_fingerprint": "sha256 over the report file's exact bytes plus every reviewed file's exact current bytes, in sorted path order. Any change to the report or to a reviewed file after issuance invalidates this hash.",
+
+  "reviewed_at": "2026-07-10T10:30:00Z",
+  "_reviewed_at": "Copied from report.reviewed_at — informational only, not part of the trust check.",
+
+  "open_blocking_findings": 0,
+  "_open_blocking_findings": "Always 0. Recomputed independently from report.findings at issue time (OPEN + BLOCKER/HIGH, or OPEN + MEDIUM with introduced_by_current_change true) rather than trusted from report.summary.",
+
+  "_verification_rule": "A receipt is VALID only when: its filename is {target}-receipt.json; target matches both the guarded phase and report.target; verdict is APPROVED; policy_version matches current; open_blocking_findings is 0; report_path and every reviewed_files entry resolve inside the repo and still exist on disk; and recomputing source_fingerprint from current disk contents produces an identical hash. Any other outcome is INVALID and the completion transition it guards must be blocked.",
+
+  "_scope_disclaimer": "A valid receipt proves the reviewed report and reviewed files are byte-identical to what an APPROVED verdict was issued against. It does not itself prove the semantic review (SOLID, ownership, architecture) was correct — that judgment lives in the report the receipt points to."
+}

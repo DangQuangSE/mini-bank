@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backend Developer"
+  short_description: "Implement secure backend code from team artifacts"
+  default_prompt: "Use $team-dev to implement the backend from the approved team artifacts."

@@ -1,0 +1,201 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/session_init.py"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/subagent_init.py"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/session_start_context.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/dev_rules_reminder.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/caveman_watch.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/pre_srs.py",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/privacy_block.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|Bash|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/suggest_compact.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/level_gate.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/pre_write_validator.py",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/plan_validator.py",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/quality_receipt_gate.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/build_check.py",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/simplify_gate.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/artifact_fold.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/post_srs.py",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/flag_aggregator.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/compact_90_guard.js",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/session_end.py",
+            "async": true,
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/run.js .claude/hooks/session_end.py",
+            "async": true,
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node .claude/hooks/compact_90_guard.js --track",
+    "padding": 0,
+    "refreshInterval": 5
+  },
+  "ignorePatterns": [
+    "**/bin/**",
+    "**/obj/**",
+    "**/.vs/**",
+    "**/.git/**",
+    "**/Migrations/**",
+    "**/TestResults/**",
+    "**/coverage/**",
+    "**/.claude/session-data/**",
+    "**/*.suo",
+    "**/*.user",
+    "**/*.lock.json",
+    "**/node_modules/**"
+  ],
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "90"
+  }
+}
