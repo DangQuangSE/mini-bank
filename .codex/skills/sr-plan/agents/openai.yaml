@@ -1,4 +1,0 @@
-interface:
-  display_name: "SRS Section Planner"
-  short_description: "Plan every IEEE 830 section in detail"
-  default_prompt: "Use $sr-plan to create detailed per-section plans for the approved project spec."

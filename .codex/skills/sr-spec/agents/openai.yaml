@@ -1,4 +1,0 @@
-interface:
-  display_name: "SRS Specification"
-  short_description: "Turn approved brainstorming into a complete spec"
-  default_prompt: "Use $sr-spec to turn the approved brainstorm into a comprehensive specification."

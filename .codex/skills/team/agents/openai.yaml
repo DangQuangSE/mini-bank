@@ -1,4 +1,0 @@
-interface:
-  display_name: "Virtual Team Pipeline"
-  short_description: "Run all seven delivery roles in sequence"
-  default_prompt: "Use $team to run the full virtual delivery team pipeline for this requirement."

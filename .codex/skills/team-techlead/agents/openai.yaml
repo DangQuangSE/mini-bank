@@ -1,4 +1,0 @@
-interface:
-  display_name: "Technical Lead"
-  short_description: "Design architecture, data, sequences, and ADRs"
-  default_prompt: "Use $team-techlead to design the system from the approved BA artifacts."

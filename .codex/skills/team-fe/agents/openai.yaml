@@ -1,4 +1,0 @@
-interface:
-  display_name: "Frontend Developer"
-  short_description: "Implement frontend code from team artifacts"
-  default_prompt: "Use $team-fe to implement the frontend from the approved team artifacts."

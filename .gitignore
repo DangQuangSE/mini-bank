@@ -2,3 +2,8 @@
 *.codex
 *.plans
 *tools
+
+# Local agent/project support directories; keep them out of version control.
+/.codex/
+/plans/
+/tools/

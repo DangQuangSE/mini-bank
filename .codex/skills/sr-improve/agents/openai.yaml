@@ -1,4 +1,0 @@
-interface:
-  display_name: "SRS Improvement Report"
-  short_description: "Report risks, warnings, and next-version ideas"
-  default_prompt: "Use $sr-improve to create an improvement report for this SRS project."

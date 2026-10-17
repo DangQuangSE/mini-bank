@@ -1,4 +1,0 @@
-interface:
-  display_name: "Sequential Thinking"
-  short_description: "Enable structured problem-solving through iterative reasoning with revision and branching capabilities"
-  default_prompt: "Use sequential-thinking to break down complex problems into step-by-step reasoning with ability to revise, branch, and explore alternatives"

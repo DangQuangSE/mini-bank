@@ -1,4 +1,0 @@
-interface:
-  display_name: "QA and QC"
-  short_description: "Audit all artifacts and issue release sign-off"
-  default_prompt: "Use $team-qa to audit the full pipeline and issue an advisory release sign-off."

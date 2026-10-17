@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Manager"
-  short_description: "Create sprints, tasks, and story-point estimates"
-  default_prompt: "Use $team-pm to turn the approved design into a sprint and task plan."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Problem Solving"
-  short_description: "Creative problem-solving techniques for breaking through stuck points with collision-zone thinking, inversion, pattern recognition, and simplification"
-  default_prompt: "Use problem-solving to break through stuck points and find elegant solutions using collision-zone thinking, inversion exercises, pattern recognition, scale analysis, or simplification cascades"

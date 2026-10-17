@@ -1,4 +1,0 @@
-interface:
-  display_name: "Skill Creator"
-  short_description: "Create, improve and evaluate Claude skills"
-  default_prompt: "Use $skill-creator to help create a new skill or improve an existing one."

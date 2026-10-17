@@ -1,4 +1,0 @@
-interface:
-  display_name: "Business Analyst"
-  short_description: "Create requirements, stories, criteria, and rules"
-  default_prompt: "Use $team-ba to analyze this requirement and produce the BA artifact set."

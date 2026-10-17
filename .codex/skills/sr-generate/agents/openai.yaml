@@ -1,4 +1,0 @@
-interface:
-  display_name: "SRS Generator"
-  short_description: "Generate the full SRS from approved plans"
-  default_prompt: "Use $sr-generate to produce the complete IEEE 830 SRS from approved plan files."
