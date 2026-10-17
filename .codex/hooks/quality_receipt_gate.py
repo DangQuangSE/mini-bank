@@ -108,7 +108,15 @@ def required_receipts(root: Path, patch: str) -> list[Path]:
 
 
 def main() -> None:
-    data = json.load(sys.stdin)
+    try:
+        data = json.load(sys.stdin)
+    except (json.JSONDecodeError, OSError):
+        # A missing or malformed hook payload is not a completion transition.
+        # Let the tool proceed; only a valid completion patch should be gated.
+        return
+    if not isinstance(data, dict):
+        return
+
     tool_input = data.get("tool_input", {})
     patch = tool_input.get("command", "") if isinstance(tool_input, dict) else ""
     if not isinstance(patch, str) or not patch:

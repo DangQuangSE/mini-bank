@@ -9,7 +9,7 @@ Responsibilities (FR-39):
   - Scan all team artifact .md files for ## Flags from Previous Agents sections
   - Extract every FLAG-{ROLE}-{NNN} entry
   - Write a consolidated flags-summary.md to projects/{slug}/
-  - Print a formatted WARNING to the terminal with severity counts
+  - Return a formatted report through Codex hookSpecificOutput with severity counts
 
 Ported from .claude/hooks/flag_aggregator.py. tool_input has a `command`
 field (raw patch text) instead of file_path; _patch_utils splits out
@@ -21,11 +21,12 @@ from disk, not from the patch) is unchanged from the Claude version.
 
 Output:
   - projects/{slug}/flags-summary.md
-  - Console: warning block (or clean confirmation if no flags)
+  - PostToolUse: one hookSpecificOutput JSON object containing the report
 
 Exit codes:
   0 -> always (this hook never blocks — it runs after the write succeeds)
 """
+import contextlib
 import json
 import sys
 import os
@@ -304,7 +305,22 @@ def main() -> None:
 
     all_flags = collect_all_flags(project_root)
     summary_path = write_flags_summary(project_root, slug, all_flags)
-    print_report(all_flags, summary_path, slug)
+    output = io.StringIO()
+    with contextlib.redirect_stdout(output):
+        print_report(all_flags, summary_path, slug)
+    context = output.getvalue().strip()
+    if context:
+        print(
+            json.dumps(
+                {
+                    "hookSpecificOutput": {
+                        "hookEventName": "PostToolUse",
+                        "additionalContext": context,
+                    }
+                },
+                ensure_ascii=False,
+            )
+        )
 
     sys.exit(0)
 

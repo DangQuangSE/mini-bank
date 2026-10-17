@@ -89,6 +89,7 @@ If `CHANGES_REQUIRED`, list every blocking finding's `id`, `rule`, `location`, a
 
 ## Constraints
 
+- Multi-repo layout: `plans/{slug}` and the reviewed code do not need to share one git repo. `receipt.py` computes the filesystem common ancestor of the report and every `reviewed_files` entry at issue time (e.g. a shared workspace folder like `pte-org/` above sibling repos `pte-doc/` and `pte-api/`, even if that folder itself isn't a git repo) and records it in the receipt, so verify never has to re-derive it. `reviewed_files` entries just need a path resolvable from the current working directory (relative with `../` segments across repos, or absolute).
 - Never edit a file. Never write, run, or suggest test code — that's `ck:test`'s job.
 - Issuing a receipt is a mechanical fingerprint step performed by `scripts/receipt.py`, invoked only after this skill itself reaches `APPROVED` in `--gate`/`--verify` mode — never invoke it for a `CHANGES_REQUIRED` report, and never invoke it from `--audit`/`--diff`/`--changed`. A receipt proves report/file freshness, not the correctness of the semantic review.
 - `--audit`/`--diff`/`--changed` without `--save` never write to disk.

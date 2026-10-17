@@ -1,4 +1,0 @@
-interface:
-  display_name: "Playwright Skill"
-  short_description: "Complete browser automation with Playwright for testing, screenshotting, form filling, and interactive testing"
-  default_prompt: "Use playwright-skill to automate browser interactions, test websites, fill forms, take screenshots, validate UX, test login flows, and perform any browser-based testing tasks"

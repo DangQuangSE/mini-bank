@@ -7,16 +7,19 @@
   "verdict": "APPROVED",
   "_verdict": "Always APPROVED. A CHANGES_REQUIRED report never produces a receipt.",
 
-  "policy_version": "1.0.0",
+  "policy_version": "1.1.0",
   "_policy_version": "Must equal scripts/receipt.py POLICY_VERSION at verify time. A version mismatch invalidates the receipt even if the fingerprint still matches — it forces re-verification under the current contract after a policy change.",
 
+  "root": "D:/GitHub/MySkills",
+  "_root": "The filesystem common ancestor of report_path and every reviewed_files entry, computed once at issue time (not necessarily a git root — in a polyrepo project it can be the shared parent folder above sibling repos). report_path and reviewed_files below are stored relative to this root. Verify reads root back from here; it never re-derives or is told where it is. null only when the report and a reviewed file share no common filesystem root (e.g. different Windows drives), in which case report_path/reviewed_files are stored as absolute paths instead.",
+
   "report_path": "plans/development-quality-pipeline/quality/phase-02-receipt-gate-quality-report.json",
-  "_report_path": "Repo-relative path to the exact report this receipt was derived from.",
+  "_report_path": "Path to the exact report this receipt was derived from, relative to root (or absolute — see _root).",
 
   "reviewed_files": [
     "development-skills/skills/ck-quality/scripts/receipt.py"
   ],
-  "_reviewed_files": "Copied verbatim from report.reviewed_files, sorted. Every entry must resolve inside the repository.",
+  "_reviewed_files": "Copied from report.reviewed_files, resolved and re-expressed relative to root (or absolute — see _root), sorted by that stored path.",
 
   "source_fingerprint": "sha256:...",
   "_source_fingerprint": "sha256 over the report file's exact bytes plus every reviewed file's exact current bytes, in sorted path order. Any change to the report or to a reviewed file after issuance invalidates this hash.",
@@ -27,7 +30,7 @@
   "open_blocking_findings": 0,
   "_open_blocking_findings": "Always 0. Recomputed independently from report.findings at issue time (OPEN + BLOCKER/HIGH, or OPEN + MEDIUM with introduced_by_current_change true) rather than trusted from report.summary.",
 
-  "_verification_rule": "A receipt is VALID only when: its filename is {target}-receipt.json; target matches both the guarded phase and report.target; verdict is APPROVED; policy_version matches current; open_blocking_findings is 0; report_path and every reviewed_files entry resolve inside the repo and still exist on disk; and recomputing source_fingerprint from current disk contents produces an identical hash. Any other outcome is INVALID and the completion transition it guards must be blocked.",
+  "_verification_rule": "A receipt is VALID only when: its filename is {target}-receipt.json; target matches both the guarded phase and report.target; verdict is APPROVED; policy_version matches current; open_blocking_findings is 0; report_path and every reviewed_files entry resolve (against the stored root, or as absolute paths) and still exist on disk; and recomputing source_fingerprint from current disk contents produces an identical hash. Any other outcome is INVALID and the completion transition it guards must be blocked.",
 
   "_scope_disclaimer": "A valid receipt proves the reviewed report and reviewed files are byte-identical to what an APPROVED verdict was issued against. It does not itself prove the semantic review (SOLID, ownership, architecture) was correct — that judgment lives in the report the receipt points to."
 }

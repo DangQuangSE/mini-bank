@@ -7,7 +7,13 @@
           {
             "type": "command",
             "command": "python .codex/hooks/session_start_context.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/session_start_context.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''session_start_context.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "python .codex/hooks/session_memory.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''session_memory.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 15
           }
         ]
@@ -20,8 +26,14 @@
           {
             "type": "command",
             "command": "python .codex/hooks/pre_srs.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/pre_srs.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''pre_srs.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python .codex/hooks/session_memory.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''session_memory.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
+            "timeout": 15
           }
         ]
       }
@@ -33,25 +45,25 @@
           {
             "type": "command",
             "command": "python .codex/hooks/level_gate.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/level_gate.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''level_gate.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 10
           },
           {
             "type": "command",
             "command": "python .codex/hooks/pre_write_validator.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/pre_write_validator.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''pre_write_validator.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 15
           },
           {
             "type": "command",
             "command": "python .codex/hooks/plan_validator.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/plan_validator.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''plan_validator.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 10
           },
           {
             "type": "command",
             "command": "python .codex/hooks/quality_receipt_gate.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/quality_receipt_gate.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''quality_receipt_gate.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 10
           }
         ]
@@ -64,13 +76,13 @@
           {
             "type": "command",
             "command": "python .codex/hooks/post_srs.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/post_srs.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''post_srs.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 25
           },
           {
             "type": "command",
             "command": "python .codex/hooks/flag_aggregator.py",
-            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/run_python.ps1 .codex/hooks/flag_aggregator.py",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command '& { $p=(Get-Location).Path; while ($p) { $r=Join-Path $p ''.codex/hooks/run_from_git_root.ps1''; if (Test-Path -LiteralPath $r -PathType Leaf) { & $r ''flag_aggregator.py''; exit $LASTEXITCODE }; $n=Split-Path -Path $p -Parent; if ($n -eq $p) { break }; $p=$n }; [Console]::Error.WriteLine(''Could not locate the Codex hook runner from the current directory.''); exit 127 }'",
             "timeout": 30
           }
         ]
